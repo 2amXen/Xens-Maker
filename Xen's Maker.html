@@ -1,0 +1,157 @@
+
+<!-- saved from url=(0064)file:///C:/Users/63935/Desktop/Ken's%20Coding/Ken's%20Maker.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Xen's Maker</title>
+        <style>
+            body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+}
+
+.BigBox {
+    height: 90%;
+    width: 100%;
+    background: orange;
+    border-radius: 7px;
+    padding: 30px 25px 40px
+}
+
+.BigBox :where(textarea, input, select, button) {
+    height: 75%;
+    width: 100%;
+    border: 1px solid black;
+    outline: none;
+    background: white;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.BigBox textarea {
+    resize: none;
+    border: 1px solid skyblue;
+    padding: 8px 13px;
+    background-color: black;
+    color: springgreen;
+}
+
+.BigBox .FileOptions {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.FileOptions .Option {
+    width: calc(100% / 2 - 8px);
+}
+
+.Option :where(input, .SelectMenu) {
+    height: 50px;
+    padding: 0 15px;
+    margin-top: 6px;
+    border-radius: 5px;
+}
+
+.Option .SelectMenu select {
+    height: 50px;
+}
+
+.BigBox .SaveButton {
+    max-height: 50px;
+    color: white;
+    margin-top: 20px;
+    padding: 16px 0px;
+    cursor: pointer;
+    opacity: 0.6;
+    background: gold;
+    border: none;
+    pointer-events:none
+}
+
+.BigBox textarea:valid ~ .SaveButton {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+h2 {
+    position:fixed;
+    right: 22;
+    bottom: 2;
+    color: blue;
+}
+        </style>
+        <link rel="icon" href="file:///C:/Users/63935/Desktop/Ken&#39;s%20Coding/Finished%20Work/Text%20Saver/Images/robot.gif">
+    </head>
+
+    <body>
+        <div class="BigBox">
+            <textarea required="">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;
+            Title
+        &lt;/title&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;style&gt;
+            body {
+                display: flex;
+                align-items: center;
+                background-color: gray;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="MainBox"&gt;
+            &lt;h1&gt;Empty Box&lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;script&gt;
+            console.log("start");
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</textarea>
+            <div class="FileOptions">
+                <div class="Option FileName">
+                    <label>File name</label>
+                    <input type="text" placeholder="Enter file name">
+                </div>
+                <div class="Option FileType">
+                    <label>Save as</label>
+                    <div class="SelectMenu">
+                        <select>
+                            <option value="text/html">HTML File (.html)</option><option value="text/css">CSS File (.css)</option><option value="text/javascript">JS File (.js)</option><option value="text/plain">Text File (.txt)</option>
+                            <option value="application/msword">Doc File (.doc)</option>
+                            
+                            
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="SaveButton">Save As HTML File</button>
+        </div>
+        <script>
+    const textarea = document.querySelector("textarea"),
+FileNameInputJs = document.querySelector(".FileName input"),
+SelectMenuJs = document.querySelector(".SelectMenu select"),
+SaveButtonJs = document.querySelector(".SaveButton");
+
+SelectMenuJs.addEventListener("change", () => {
+    let SelectedOption = SelectMenuJs.options[SelectMenuJs.selectedIndex].text;
+    SaveButtonJs.innerText = `Save As ${SelectedOption.split(" ")[0]} File`
+});
+
+SaveButtonJs.addEventListener("click", () => {
+    const blob = new Blob([textarea.value], {type: SelectMenuJs.value});
+    const FileUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.download = FileNameInputJs.value;
+    link.href = FileUrl;
+    link.click();
+});
+</script>
+        <h2>by Xen</h2>
+    
+</body></html>

@@ -13,7 +13,7 @@
 .BigBox {
     height: 100vh;
     width: 100vw;
-    background: orange;
+    background: gray;
     border-radius: 7.5px;
     padding: .75vh .75vw .75vw;
 }
@@ -29,9 +29,6 @@
 }
 
 .BigBox textarea {
-    max-width: 90vw;
-    border: 1px solid skyblue;
-    padding: 8px 13px;
     background-color: black;
     color: springgreen;
 }
@@ -65,7 +62,7 @@
     padding: 16px 0px;
     cursor: pointer;
     opacity: 0.6;
-    background: gold;
+    background: skyblue;
     border: none;
     pointer-events:none
 }
@@ -80,7 +77,24 @@
 
     <body>
         <div class="BigBox">
-            <textarea required="">&lt;!DOCTYPE html&gt;
+            <div class="FileOptions">
+                <div class="Option FileName">
+                    <label>File name</label>
+                    <input type="text" placeholder="Enter file name">
+                </div>
+                <div class="Option FileType">
+                    <label>Save as</label>
+                    <div class="SelectMenu">
+                        <select>
+                            <option value="text/html">HTML File (.html)</option><option value="text/css">CSS File (.css)</option><option value="text/javascript">JS File (.js)</option><option value="text/plain">Text File (.txt)</option>
+                            <option value="application/msword">Doc File (.doc)</option>
+                            
+                            
+                            
+                        </select>
+                    </div>
+                </div>
+            </div><textarea required="">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
         &lt;title&gt;
@@ -104,24 +118,7 @@
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;</textarea>
-            <div class="FileOptions">
-                <div class="Option FileName">
-                    <label>File name</label>
-                    <input type="text" placeholder="Enter file name">
-                </div>
-                <div class="Option FileType">
-                    <label>Save as</label>
-                    <div class="SelectMenu">
-                        <select>
-                            <option value="text/html">HTML File (.html)</option><option value="text/css">CSS File (.css)</option><option value="text/javascript">JS File (.js)</option><option value="text/plain">Text File (.txt)</option>
-                            <option value="application/msword">Doc File (.doc)</option>
-                            
-                            
-                            
-                        </select>
-                    </div>
-                </div>
-            </div>
+            
             <button class="SaveButton">Save As HTML File</button>
         </div>
         <script>
@@ -144,4 +141,5 @@ SaveButtonJs.addEventListener("click", () => {
     link.click();
 });
 </script>
+
 </body></html>

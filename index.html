@@ -122,24 +122,42 @@
             <button class="SaveButton">Save As HTML File</button>
         </div>
         <script>
-    const textarea = document.querySelector("textarea"),
-FileNameInputJs = document.querySelector(".FileName input"),
-SelectMenuJs = document.querySelector(".SelectMenu select"),
-SaveButtonJs = document.querySelector(".SaveButton");
+        const textarea = document.querySelector("textarea"),
+            FileNameInputJs = document.querySelector(".FileName input"),
+            SelectMenuJs = document.querySelector(".SelectMenu select"),
+            SaveButtonJs = document.querySelector(".SaveButton");
 
-SelectMenuJs.addEventListener("change", () => {
-    let SelectedOption = SelectMenuJs.options[SelectMenuJs.selectedIndex].text;
-    SaveButtonJs.innerText = `Save As ${SelectedOption.split(" ")[0]} File`
-});
+        // Default file names based on file type
+        const defaultFileNames = {
+            "text/html": "index.html",
+            "text/css": "styles.css",
+            "text/javascript": "script.js",
+            "text/plain": "file.txt",
+            "application/msword": "document.doc"
+        };
 
-SaveButtonJs.addEventListener("click", () => {
-    const blob = new Blob([textarea.value], {type: SelectMenuJs.value});
-    const FileUrl = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.download = FileNameInputJs.value;
-    link.href = FileUrl;
-    link.click();
-});
-</script>
+        // Set the default file name when the page loads
+        FileNameInputJs.value = defaultFileNames[SelectMenuJs.value];
+
+        // Update the file name whenever the user switches the file type
+        SelectMenuJs.addEventListener("change", () => {
+            const selectedType = SelectMenuJs.value; // Get selected file type
+            // Update the file name in the input field based on the selected file type
+            FileNameInputJs.value = defaultFileNames[selectedType];
+
+            // Update the text on the Save button to reflect the new file type
+            let selectedOption = SelectMenuJs.options[SelectMenuJs.selectedIndex].text;
+            SaveButtonJs.innerText = `Save as ${selectedOption}`;
+        });
+
+        SaveButtonJs.addEventListener("click", () => {
+            const blob = new Blob([textarea.value], { type: SelectMenuJs.value });
+            const FileUrl = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.download = FileNameInputJs.value;
+            link.href = FileUrl;
+            link.click();
+        });
+    </script>
 
 </body></html>
